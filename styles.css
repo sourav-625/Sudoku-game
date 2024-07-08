@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: auto;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#sudoku-container {
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(9, 45px);
+    grid-template-rows: repeat(9, 41.5px);
+    border: 1px solid #000;
+}
+
+#sudoku-container div {
+    text-align: center;
+    line-height: 40px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#solutions-container {
+    display: none;
+    padding: 10px;
+    border: 1px solid black;
+    overflow: auto;
+    max-height: 400px;
+}
