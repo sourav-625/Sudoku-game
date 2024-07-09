@@ -21,7 +21,7 @@ h1 {
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(9, 1fr);
     border: 1px solid #000;
-    min-height: 70vh;
+    max-height: 80vh;
     max-width: 95vw;
     margin: 0 auto;
 }
