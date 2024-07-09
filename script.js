@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 row.appendChild(cell);
             }
             sudokuContainer.appendChild(row);
+            const sudokuHeight = sudokuContainer.scrollHeight;
+            sudokuContainer.style.height = sudokuHeight + 'px';
         }
     }
 
