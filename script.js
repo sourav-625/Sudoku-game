@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             sudokuContainer.appendChild(row);
             const sudokuHeight = sudokuContainer.scrollHeight;
-            sudokuContainer.style.height = sudokuHeight + 'px';
+            const maxContainerHeight = window.innerHeight * 0.8;
+            sudokuContainer.style.maxHeight = maxContainerHeight + 'px';
+            sudokuContainer.style.height = Math.min(sudokuHeight, maxContainerHeight) + 'px';
         }
     }
 
