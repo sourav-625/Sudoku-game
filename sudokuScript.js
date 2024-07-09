@@ -100,20 +100,21 @@ function checkCorrect(sudokuGrid) {
     function isValidSet(set) {
         let seen = new Set();
         for (let num of set) {
-            if(num === 0) {
+            if (num === 0) {
                 return false;
-            } else {
-                if (seen.has(num)) {
-                    return false;
-                }
-                seen.add(num);
             }
+            if (seen.has(num)) {
+                return false;
+            }
+            seen.add(num);
         }
         return true;
     }
+
     function getRow(grid, row) {
         return grid[row];
     }
+
     function getColumn(grid, col) {
         let column = [];
         for (let i = 0; i < 9; i++) {
@@ -121,6 +122,7 @@ function checkCorrect(sudokuGrid) {
         }
         return column;
     }
+
     function getSubgrid(grid, startRow, startCol) {
         let subgrid = [];
         for (let row = 0; row < 3; row++) {
@@ -130,16 +132,19 @@ function checkCorrect(sudokuGrid) {
         }
         return subgrid;
     }
+
     for (let row = 0; row < 9; row++) {
         if (!isValidSet(getRow(sudokuGrid, row))) {
             return false;
         }
     }
+
     for (let col = 0; col < 9; col++) {
         if (!isValidSet(getColumn(sudokuGrid, col))) {
             return false;
         }
     }
+
     for (let startRow = 0; startRow < 9; startRow += 3) {
         for (let startCol = 0; startCol < 9; startCol += 3) {
             if (!isValidSet(getSubgrid(sudokuGrid, startRow, startCol))) {
@@ -147,5 +152,6 @@ function checkCorrect(sudokuGrid) {
             }
         }
     }
+
     return true;
 }
