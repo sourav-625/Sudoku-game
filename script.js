@@ -11,27 +11,31 @@ document.addEventListener('DOMContentLoaded', function() {
     let sudokuGrid = [];
 
     function generateSudokuGrid(sudoku) {
-        sudokuContainer.innerHTML = '';
-        for (let i = 0; i < 9; i++) {
-            let row = document.createElement('div');
-            for (let j = 0; j < 9; j++) {
-                let cell = document.createElement('div');
-                cell.contentEditable = true;
-                cell.className = 'cell';
-                cell.style.border = '1px solid red';
-                if (sudoku[i][j] != 0) {
-                    cell.textContent = sudoku[i][j];
-                    cell.setAttribute('data-fixed', true);
-                }
-                row.appendChild(cell);
+    sudokuContainer.innerHTML = '';
+    for (let i = 0; i < 9; i++) {
+        let row = document.createElement('div');
+        for (let j = 0; j < 9; j++) {
+            let cell = document.createElement('div');
+            cell.contentEditable = true;
+            cell.className = 'cell';
+            cell.style.border = '1px solid red';
+            if (sudoku[i][j] != 0) {
+                cell.textContent = sudoku[i][j];
+                cell.setAttribute('data-fixed', true);
             }
-            sudokuContainer.appendChild(row);
-            const sudokuHeight = sudokuContainer.scrollHeight;
-            const maxContainerHeight = window.innerHeight * 0.8;
-            sudokuContainer.style.maxHeight = maxContainerHeight + 'px';
-            sudokuContainer.style.height = Math.min(sudokuHeight, maxContainerHeight) + 'px';
+            row.appendChild(cell);
         }
+        sudokuContainer.appendChild(row);
     }
+    const sudokuWidth = sudokuContainer.scrollWidth;
+    const sudokuHeight = sudokuContainer.scrollHeight;
+    sudokuContainer.style.width = sudokuWidth + 'px';
+    sudokuContainer.style.height = sudokuHeight + 'px';
+    const maxContainerWidth = window.innerWidth * 0.9;
+    const maxContainerHeight = window.innerHeight * 0.8;
+    sudokuContainer.style.maxWidth = maxContainerWidth + 'px';
+    sudokuContainer.style.maxHeight = maxContainerHeight + 'px';
+}
 
 function transpose(grid) {
     return grid[0].map((_, colIndex) => grid.map(row => row[colIndex]));
