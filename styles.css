@@ -3,8 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-height: 100vh;
-    min-width: 100vh;
+    min-height: 100vh;
     margin: 0;
     overflow: auto;
 }
@@ -19,16 +18,19 @@ h1 {
 }
 
 #sudoku-container {
-    margin: 20px auto;
     display: grid;
-    grid-template-columns: repeat(9, 45px);
-    grid-template-rows: repeat(9, 41.5px);
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
     border: 1px solid #000;
+    max-width: 90vw;
+    margin: 0 auto;
 }
 
 #sudoku-container div {
     text-align: center;
     line-height: 40px;
+    font-size: 16px;
+    border: 1px solid red;
 }
 
 button {
