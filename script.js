@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let row = document.createElement('div');
         for (let j = 0; j < 9; j++) {
             let cell = document.createElement('div');
-            cell.contentEditable = true;
+            cell.contentEditable = 'true';
             cell.className = 'cell';
             cell.style.border = '1px solid red';
             if (sudoku[i][j] != 0) {
                 cell.textContent = sudoku[i][j];
-                cell.contentEditable = false;
+                cell.contentEditable = 'false';
             }
             row.appendChild(cell);
         }
