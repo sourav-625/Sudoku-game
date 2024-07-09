@@ -100,13 +100,13 @@ function checkCorrect(sudokuGrid) {
     function isValidSet(set) {
         let seen = new Set();
         for (let num of set) {
-            if (num !== 0) {
+            if(num === 0) {
+                return false;
+            } else {
                 if (seen.has(num)) {
                     return false;
                 }
                 seen.add(num);
-            } else {
-                return false;
             }
         }
         return true;
