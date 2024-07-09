@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cell.style.border = '1px solid red';
             if (sudoku[i][j] != 0) {
                 cell.textContent = sudoku[i][j];
-                cell.setAttribute('data-fixed', true);
+                cell.readOnly = true;
             }
             row.appendChild(cell);
         }
