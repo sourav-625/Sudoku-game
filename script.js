@@ -27,14 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         sudokuContainer.appendChild(row);
     }
-    const sudokuWidth = sudokuContainer.scrollWidth;
-    const sudokuHeight = sudokuContainer.scrollHeight;
+    const cellWidth = sudokuContainer.querySelector('.cell').offsetWidth;
+    const cellHeight = sudokuContainer.querySelector('.cell').offsetHeight;
+    const sudokuWidth = cellWidth * 9;
+    const sudokuHeight = cellHeight * 9;
     sudokuContainer.style.width = sudokuWidth + 'px';
     sudokuContainer.style.height = sudokuHeight + 'px';
     const maxContainerWidth = window.innerWidth * 0.9;
     const maxContainerHeight = window.innerHeight * 0.8;
-    sudokuContainer.style.maxWidth = maxContainerWidth + 'px';
-    sudokuContainer.style.maxHeight = maxContainerHeight + 'px';
+    sudokuContainer.style.maxWidth = Math.min(sudokuWidth, maxContainerWidth) + 'px';
+    sudokuContainer.style.maxHeight = Math.min(sudokuHeight, maxContainerHeight) + 'px';
 }
 
 function transpose(grid) {
