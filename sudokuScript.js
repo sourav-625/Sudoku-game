@@ -94,3 +94,54 @@ function sudokuSolver(sudoku, row, col, sols) {
         sudokuSolver(sudoku, row + 1, col, sols);
     }
 }
+
+// Program to check if the sudoku is correct
+function checkCorrect(sudokuGrid) {
+    function isValidSet(set) {
+        let seen = new Set();
+        for (let num of set) {
+            if (num !== 0 && seen.has(num)) {
+                return false;
+            }
+            seen.add(num);
+        }
+        return true;
+    }
+    function getRow(grid, row) {
+        return grid[row];
+    }
+    function getColumn(grid, col) {
+        let column = [];
+        for (let i = 0; i < 9; i++) {
+            column.push(grid[i][col]);
+        }
+        return column;
+    }
+    function getSubgrid(grid, startRow, startCol) {
+        let subgrid = [];
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                subgrid.push(grid[startRow + row][startCol + col]);
+            }
+        }
+        return subgrid;
+    }
+    for (let row = 0; row < 9; row++) {
+        if (!isValidSet(getRow(sudokuGrid, row))) {
+            return false;
+        }
+    }
+    for (let col = 0; col < 9; col++) {
+        if (!isValidSet(getColumn(sudokuGrid, col))) {
+            return false;
+        }
+    }
+    for (let startRow = 0; startRow < 9; startRow += 3) {
+        for (let startCol = 0; startCol < 9; startCol += 3) {
+            if (!isValidSet(getSubgrid(sudokuGrid, startRow, startCol))) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
