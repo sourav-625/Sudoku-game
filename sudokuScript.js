@@ -94,13 +94,3 @@ function sudokuSolver(sudoku, row, col, sols) {
         sudokuSolver(sudoku, row + 1, col, sols);
     }
 }
-
-// Program to check if the solution given by user is correct or incomplete
-function checkCorrect(sudoku) {
-    for(let i = 0; i < 9; i++) {
-        for(let j = 0; j < 9; j++) {
-            if(sudoku[i][j] === 0) return false;
-            return safe(sudoku, i, j, sudoku[i][j]);
-        }
-    }
-}
