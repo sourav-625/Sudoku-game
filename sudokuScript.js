@@ -105,6 +105,8 @@ function checkCorrect(sudokuGrid) {
                     return false;
                 }
                 seen.add(num);
+            } else {
+                return false;
             }
         }
         return true;
