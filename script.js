@@ -43,6 +43,31 @@ function transpose(grid) {
     return grid[0].map((_, colIndex) => grid.map(row => row[colIndex]));
 }
 
+function getSudokuGridFromUI() {
+    let grid = [];
+    let rows = sudokuContainer.querySelectorAll('.cell');
+    let rowIndex = 0;
+    let colIndex = 0;
+
+    rows.forEach(cell => {
+        if (colIndex === 0) {
+            grid.push([]);
+        }
+        if (cell.textContent.trim() === '') {
+            grid[rowIndex].push(0);
+        } else {
+            grid[rowIndex].push(parseInt(cell.textContent));
+        }
+        colIndex++;
+        if (colIndex === 9) {
+            colIndex = 0;
+            rowIndex++;
+        }
+    });
+
+    return grid;
+}
+    
 function showSolution() {
     let solutions = [];
     sudokuSolver(sudokuGrid, 0, 0, solutions);
@@ -78,6 +103,7 @@ function showSolution() {
     });
 
     submitBtn.addEventListener('click', function() {
+        sudokuGrid = getSudokuGridFromUI();
         if (checkCorrect(sudokuGrid)) {
             resultDisplay.textContent = 'Congratulations! Sudoku solved correctly!';
             showSolutionBtn.style.display = 'none';
