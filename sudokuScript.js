@@ -112,7 +112,11 @@ function checkCorrect(sudokuGrid) {
     }
 
     function getRow(grid, row) {
-        return grid[row];
+        let rowSet = []
+        for (let i = 0; i < 9; i++) {
+            rowSet.push(grid[row][i]);
+        }
+        return rowSet;
     }
 
     function getColumn(grid, col) {
