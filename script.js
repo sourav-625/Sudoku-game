@@ -103,7 +103,7 @@ function showSolution() {
     });
 
     submitBtn.addEventListener('click', function() {
-        sudokuGrid = getSudokuGridFromUI();
+        sudokuGrid = transpose(getSudokuGridFromUI());
         if (checkCorrect(sudokuGrid)) {
             resultDisplay.textContent = 'Congratulations! Sudoku solved correctly!';
             showSolutionBtn.style.display = 'none';
