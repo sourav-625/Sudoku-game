@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cell.className = 'cell';
             cell.style.border = '1px dotted red';
             if(i % 3 == 2) {
-                cell.style.borderRight = '1px solid red';
+                cell.style.borderRight = '1.5px solid red';
             }
             if(j % 3 == 2) {
                 cell.style.borderBottom = '1.5px solid red';
