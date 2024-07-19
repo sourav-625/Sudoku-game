@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let cell = document.createElement('div');
             cell.contentEditable = 'true';
             cell.className = 'cell';
-            cell.style.border = '1px solid red';
+            cell.style.border = '1px dotted red';
             if(i % 3 == 2) {
                 cell.style.borderRight = '1px solid red';
             }
