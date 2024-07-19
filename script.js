@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
             cell.contentEditable = 'true';
             cell.className = 'cell';
             cell.style.border = '1px solid red';
+            if(i % 3 == 2) {
+                cell.style.borderRight = '1px solid red';
+            }
+            if(j % 3 == 2) {
+                cell.style.borderBottom = '1.5px solid red';
+            }
             if (sudoku[i][j] != 0) {
                 cell.textContent = sudoku[i][j];
                 cell.contentEditable = 'false';
