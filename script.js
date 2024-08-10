@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         sudokuContainer.appendChild(row);
     }
-    const cellWidth = sudokuContainer.querySelector('.cell').offsetWidth;
+    const cellWidth = sudokuContainer.querySelector('.cell').offsetHeight;
     const cellHeight = sudokuContainer.querySelector('.cell').offsetHeight;
     const sudokuWidth = cellWidth * 9;
     const sudokuHeight = cellHeight * 9;
