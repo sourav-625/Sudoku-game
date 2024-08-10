@@ -1,2 +1,2 @@
 # Sudoku-game
-This is a sudoku game
+This is an online sudoku game which can generate random sudoku puzzles and and can display all possible solution to it.
