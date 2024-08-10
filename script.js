@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
             cell.className = 'cell';
             cell.style.border = '1px dotted red';
             if(i % 3 == 2) {
-                cell.style.borderRight = '1.5px solid red';
+                cell.style.borderRight = '2px solid red';
             }
             if(j % 3 == 2) {
-                cell.style.borderBottom = '1.5px solid red';
+                cell.style.borderBottom = '2px solid red';
             }
             if (sudoku[i][j] != 0) {
                 cell.textContent = sudoku[i][j];
@@ -117,6 +117,7 @@ function showSolution() {
         } else {
             resultDisplay.textContent = 'Solution is incorrect. Click "Show Solution" to see correct answers.';
             showSolutionBtn.style.display = 'block';
+            showSolutionBtn.style.margin = '0 auto';
             newGameBtn.style.display = 'none';
         }
     });
@@ -126,6 +127,7 @@ function showSolution() {
         showSolution();
         showSolutionBtn.style.display = 'none';
         newGameBtn.style.display = 'block';
+        newGameBtn.style.margin = '0 auto';
     });
 
     newGameBtn.addEventListener('click', function() {
