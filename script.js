@@ -81,7 +81,7 @@ function showSolution() {
     solutionsContainer.innerHTML = '';
 
     solutions.forEach((solution, index) => {
-        let transposedSolution = transpose(solution);
+        let transposedSolution = solution;
 
         let solutionDiv = document.createElement('div');
         solutionDiv.classList.add('sudoku-solution');
@@ -109,7 +109,7 @@ function showSolution() {
     });
 
     submitBtn.addEventListener('click', function() {
-        sudokuGrid = transpose(getSudokuGridFromUI());
+        sudokuGrid = getSudokuGridFromUI();
         if (checkCorrect(sudokuGrid)) {
             resultDisplay.textContent = 'Congratulations! Sudoku solved correctly!';
             showSolutionBtn.style.display = 'none';
