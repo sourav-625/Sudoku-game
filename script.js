@@ -12,20 +12,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function generateSudokuGrid(sudoku) {
     sudokuContainer.innerHTML = '';
-    for (let i = 0; i < 9; i++) {
+    for(let i = 0; i < 9; i++) {
         let row = document.createElement('div');
-        for (let j = 0; j < 9; j++) {
+        for(let j = 0; j < 9; j++) {
             let cell = document.createElement('div');
             cell.contentEditable = 'true';
             cell.className = 'cell';
-            cell.style.border = '1px dotted red';
+            cell.style.border = '0.5px dotted red';
             if(i % 3 == 2) {
                 cell.style.borderRight = '2px solid red';
             }
             if(j % 3 == 2) {
                 cell.style.borderBottom = '2px solid red';
             }
-            if (sudoku[i][j] != 0) {
+            if(sudoku[i][j] != 0) {
                 cell.textContent = sudoku[i][j];
                 cell.contentEditable = 'false';
             }
@@ -40,36 +40,29 @@ document.addEventListener('DOMContentLoaded', function() {
     sudokuContainer.style.width = sudokuWidth + 'px';
     sudokuContainer.style.height = sudokuHeight + 'px';
     const maxContainerWidth = window.innerWidth * 0.9;
-    const maxContainerHeight = window.innerHeight * 0.8;
+    const maxContainerHeight = window.innerHeight * 0.9;
     sudokuContainer.style.maxWidth = Math.min(sudokuWidth, maxContainerWidth) + 'px';
     sudokuContainer.style.maxHeight = Math.min(sudokuHeight, maxContainerHeight) + 'px';
-}
-
-function transpose(grid) {
-    return grid[0].map((_, colIndex) => grid.map(row => row[colIndex]));
+    window.addEventListener('resize', sudokuContainer);
 }
 
 function getSudokuGridFromUI() {
-    let grid = [];
-    let rows = sudokuContainer.querySelectorAll('.cell');
-    let rowIndex = 0;
-    let colIndex = 0;
-
-    rows.forEach(cell => {
-        if (colIndex === 0) {
-            grid.push([]);
+    let grid = Array.from({ length: 9 }, () => Array.from({ length: 9 }, () => 0));
+    let cells = sudokuContainer.querySelectorAll('.cell');
+    
+    for(let i = 0; i < 9; i++) {
+        let cnt = i;
+        for(let j = 0; j < 9; j++) {
+            if(cells[cnt].textContent.trim() === '') {
+                grid[i][j] = 0;
+            } else {
+                grid[i][j] = parseInt(cells[cnt].textContent.trim());
+            }
+            console.log(grid[i][j]);
+            cnt = cnt + 9;
         }
-        if (cell.textContent.trim() === '') {
-            grid[rowIndex].push(0);
-        } else {
-            grid[rowIndex].push(parseInt(cell.textContent));
-        }
-        colIndex++;
-        if (colIndex === 9) {
-            colIndex = 0;
-            rowIndex++;
-        }
-    });
+        console.log();
+    }
 
     return grid;
 }
@@ -81,13 +74,11 @@ function showSolution() {
     solutionsContainer.innerHTML = '';
 
     solutions.forEach((solution, index) => {
-        let transposedSolution = solution;
-
         let solutionDiv = document.createElement('div');
         solutionDiv.classList.add('sudoku-solution');
         solutionDiv.textContent = `Solution ${index + 1}:`;
 
-        transposedSolution.forEach(row => {
+        solution.forEach(row => {
             let rowDiv = document.createElement('div');
             rowDiv.textContent = row.join(' | ');
             rowDiv.style.border = '1px solid black';
@@ -110,7 +101,7 @@ function showSolution() {
 
     submitBtn.addEventListener('click', function() {
         sudokuGrid = getSudokuGridFromUI();
-        if (checkCorrect(sudokuGrid)) {
+        if(checkCorrect(sudokuGrid)) {
             resultDisplay.textContent = 'Congratulations! Sudoku solved correctly!';
             showSolutionBtn.style.display = 'none';
             newGameBtn.style.display = 'block';
@@ -127,16 +118,15 @@ function showSolution() {
         showSolution();
         showSolutionBtn.style.display = 'none';
         newGameBtn.style.display = 'block';
-        newGameBtn.style.margin = '0 auto';
     });
 
     newGameBtn.addEventListener('click', function() {
         solutionsContainer.innerHTML = '';
-        sudokuGrid = generateSudoku();
-        generateSudokuGrid(sudokuGrid);
         resultDisplay.textContent = '';
         showSolutionBtn.style.display = 'none';
         newGameBtn.style.display = 'none';
         solutionsContainer.style.display = 'none';
+        sudokuGrid = generateSudoku();
+        generateSudokuGrid(sudokuGrid);
     });
 });
